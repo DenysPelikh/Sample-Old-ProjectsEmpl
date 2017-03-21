@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfEmployeeBase xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <EmployeeBase xsi:type="EmployeeFixedPayment">
+    <Id>0</Id>
+    <Name>qwe</Name>
+    <MonthlyPayment>12</MonthlyPayment>
+  </EmployeeBase>
+  <EmployeeBase xsi:type="EmployeeFixedPayment">
+    <Id>1</Id>
+    <Name>wefdwe</Name>
+    <MonthlyPayment>12</MonthlyPayment>
+  </EmployeeBase>
+  <EmployeeBase xsi:type="EmployeeFixedPayment">
+    <Id>2</Id>
+    <Name>reerf</Name>
+    <MonthlyPayment>34554</MonthlyPayment>
+  </EmployeeBase>
+</ArrayOfEmployeeBase>
