@@ -11,17 +11,17 @@ namespace PrEmpWin.Views
 {
     public partial class EmployeeForm : Form
     {
-        private readonly EmployeeModel employeeModel;
-        private List<EmployeeView> employeesView;
+        private readonly EmployeeModel _employeeModel;
+        private List<EmployeeView> _employeesView;
 
-        private CreateEmployee createEmployee;
+        private CreateEmployee _createEmployee;
 
         public EmployeeForm()
         {
             InitializeComponent();
 
-            employeeModel = new EmployeeModel();
-            employeesView = new List<EmployeeView>();
+            _employeeModel = new EmployeeModel();
+            _employeesView = new List<EmployeeView>();
 
             employeesGrid.AutoGenerateColumns = false;
             employeesGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -35,8 +35,8 @@ namespace PrEmpWin.Views
             try
             {
                 employeesGrid.DataSource = null;
-                employeesView.Sort(SortPayment);
-                employeesGrid.DataSource = employeesView.Count > 0 ? employeesView : null;
+                _employeesView.Sort(SortPayment);
+                employeesGrid.DataSource = _employeesView.Count > 0 ? _employeesView : null;
             }
             catch (Exception ex)
             {
@@ -46,17 +46,17 @@ namespace PrEmpWin.Views
 
         private void CheckFromDatabase_CheckedChanged(object sender, EventArgs e)
         {
-            employeesView.RemoveAll(x => x.From == SourceType.Database);
+            _employeesView.RemoveAll(x => x.From == SourceType.Database);
 
             if (CheckFromDatabase.Checked)
             {
                 try
                 {
-                    var employees = employeeModel.GetEmployeesFromBd()
+                    var employees = _employeeModel.GetEmployeesFromBd()
                         .Select(Mapper.Map<EmployeeView>)
                         .Select(x => { x.From = SourceType.Database; return x; }).ToList();
 
-                    employeesView = employeesView.Concat(employees).ToList();
+                    _employeesView = _employeesView.Concat(employees).ToList();
                 }
                 catch (Exception ex)
                 {
@@ -71,17 +71,17 @@ namespace PrEmpWin.Views
 
         private void CheckFromFile_CheckedChanged(object sender, EventArgs e)
         {
-            employeesView.RemoveAll(x => x.From == SourceType.File);
+            _employeesView.RemoveAll(x => x.From == SourceType.File);
 
             if (CheckFromFile.Checked)
             {
                 try
                 {
-                    var employees = employeeModel.GetEmployeesFromFile()
+                    var employees = _employeeModel.GetEmployeesFromFile()
                    .Select(Mapper.Map<EmployeeView>)
                    .Select(x => { x.From = SourceType.File; return x; }).ToList();
 
-                    employeesView = employeesView.Concat(employees).ToList();
+                    _employeesView = _employeesView.Concat(employees).ToList();
                 }
                 catch (FileNotFoundException ex)
                 {
@@ -113,8 +113,8 @@ namespace PrEmpWin.Views
 
         private void buttonCreate_Click(object sender, EventArgs e)
         {
-            createEmployee = new CreateEmployee(employeeModel);
-            createEmployee.ShowDialog();
+            _createEmployee = new CreateEmployee(_employeeModel);
+            _createEmployee.ShowDialog();
             UpdateCheck(sender, e);
         }
 
@@ -122,7 +122,7 @@ namespace PrEmpWin.Views
         {
             int src = y.MonthlyAverageSalary.CompareTo(x.MonthlyAverageSalary);
             if (src == 0)
-                src = String.Compare(x.EmployeeName, y.EmployeeName, StringComparison.Ordinal);
+                src = string.Compare(x.EmployeeName, y.EmployeeName, StringComparison.Ordinal);
 
             return src;
         }
@@ -136,8 +136,8 @@ namespace PrEmpWin.Views
                     try
                     {
                         int id = (int)employeesGrid.SelectedRows[0].Cells["Id"].Value;
-                        SourceType From = (SourceType)employeesGrid.SelectedRows[0].Cells["From"].Value;
-                        employeeModel.DeleteEmployee(id, From);
+                        var sourceTypeFrom = (SourceType)employeesGrid.SelectedRows[0].Cells["From"].Value;
+                        _employeeModel.DeleteEmployee(id, sourceTypeFrom);
                     }
                     catch (Exception ex)
                     {
@@ -157,7 +157,7 @@ namespace PrEmpWin.Views
         {
             if (checkFirstFive.Checked)
             {
-                employeesView = employeesView.Take(5).ToList();
+                _employeesView = _employeesView.Take(5).ToList();
                 UpdateEmployeeGrid();
             }
             else
@@ -170,7 +170,7 @@ namespace PrEmpWin.Views
         {
             if (checkLastThree.Checked)
             {
-                employeesView = employeesView.Skip(employeesView.Count - 3).ToList();
+                _employeesView = _employeesView.Skip(_employeesView.Count - 3).ToList();
                 UpdateEmployeeGrid();
             }
             else

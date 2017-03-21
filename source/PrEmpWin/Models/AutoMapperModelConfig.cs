@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
+using PrEmp.Domain.Employees;
 using PrEmpWin.DAL;
-using PrEmpWin.Domain;
 using PrEmpWin.ViewModel;
 
 namespace PrEmpWin.Models
@@ -9,7 +9,7 @@ namespace PrEmpWin.Models
     {
         public static void Configure()
         {
-            /////For database
+            // For database
             Mapper.CreateMap<Employee, EmployeeHourlyPayment>()
                 .ForMember(dest => dest.HourlyRate, opts => opts.MapFrom(src => src.Payment));
 
@@ -41,12 +41,12 @@ namespace PrEmpWin.Models
             Mapper.CreateMap<EmployeeFixedPayment, Employee>()
                .ForMember(dest => dest.Payment, opts => opts.MapFrom(src => src.MonthlyPayment));
 
-            /////For EmployeeView
+            // For EmployeeView
             Mapper.CreateMap<EmployeeBase, EmployeeView>()
                 .ForMember(dest => dest.EmployeeName, opts => opts.MapFrom(src => src.Name))
                 .ForMember(dest => dest.MonthlyAverageSalary, opts => opts.MapFrom(src => src.GetAverageMonthlySalary()));
 
-            /////For CreateEmployeeView
+            // For CreateEmployeeView
             Mapper.CreateMap<CreateEmployeeView, EmployeeHourlyPayment>()
                .ForMember(dest => dest.HourlyRate, opts => opts.MapFrom(src => src.Payment));
 

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Xml.Serialization;
 
-namespace PrEmpWin.Domain
+namespace PrEmp.Domain.Employees
 {
     [Serializable]
     [XmlInclude(typeof(EmployeeHourlyPayment))]

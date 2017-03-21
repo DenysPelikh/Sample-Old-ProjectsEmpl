@@ -75,9 +75,6 @@
       <DependentUpon>EmployeeDB.edmx</DependentUpon>
     </Compile>
     <Compile Include="DAL\Repository\GenericRepository.cs" />
-    <Compile Include="Domain\EmployeeBase.cs" />
-    <Compile Include="Domain\EmployeeFixedPayment.cs" />
-    <Compile Include="Domain\EmployeeHourlyPayment.cs" />
     <Compile Include="Models\AutoMapperModelConfig.cs" />
     <Compile Include="ViewModel\CreateEmployeeView.cs" />
     <Compile Include="Models\EmployeeModel.cs" />
@@ -149,6 +146,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PrEmp.Domain\PrEmp.Domain.csproj">
+      <Project>{139be8da-ac3c-4e54-9c18-bf2b05c8ad2c}</Project>
+      <Name>PrEmp.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

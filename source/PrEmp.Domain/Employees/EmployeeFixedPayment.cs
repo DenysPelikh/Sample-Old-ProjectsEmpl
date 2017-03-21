@@ -1,4 +1,4 @@
-﻿namespace PrEmpWin.Domain
+﻿namespace PrEmp.Domain.Employees
 {
     public class EmployeeFixedPayment : EmployeeBase
     {
@@ -15,6 +15,11 @@
         public override double GetAverageMonthlySalary()
         {
             return MonthlyPayment;
+        }
+
+        public override string ToString()
+        {
+            return "Fixed payment";
         }
     }
 }

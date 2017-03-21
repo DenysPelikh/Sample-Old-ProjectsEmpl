@@ -7,13 +7,13 @@ namespace PrEmpWin.Views
 {
     public partial class CreateEmployee : Form
     {
-        private readonly EmployeeModel employeeModel;
+        private readonly EmployeeModel _employeeModel;
 
-        public CreateEmployee(EmployeeModel _employeeModel)
+        public CreateEmployee(EmployeeModel employeeModel)
         {
             InitializeComponent();
 
-            employeeModel = _employeeModel;
+            _employeeModel = employeeModel;
 
             checkDatabase.Checked = false;
             checkFile.Checked = false;
@@ -21,8 +21,8 @@ namespace PrEmpWin.Views
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            string message = String.Empty;
-            CreateEmployeeView createEmployeeView = CreateEmployeeView(ref message);
+            var message = string.Empty;
+            var createEmployeeView = CreateEmployeeView(ref message);
 
             if (message.Length != 0)
             {
@@ -33,7 +33,7 @@ namespace PrEmpWin.Views
 
             try
             {
-                employeeModel.AddEmployee(createEmployeeView);
+                _employeeModel.AddEmployee(createEmployeeView);
                 MessageBox.Show("Employee added");
             }
             catch (Exception ex)
@@ -41,7 +41,7 @@ namespace PrEmpWin.Views
                 MessageBox.Show(ex.Message);
             }
 
-            this.Close();
+            Close();
 
         }
 
@@ -60,22 +60,22 @@ namespace PrEmpWin.Views
 
             employee.Name = txtName.Text;
 
-            int Payment = 0;
+            int payment = 0;
 
             if (txtPayment.Text.Length == 0)
             {
                 message += "Field payment must be filled\n";
             }
-            else if (!Int32.TryParse(txtPayment.Text, out Payment))
+            else if (!int.TryParse(txtPayment.Text, out payment))
             {
                 message += "Incorrectly entered the field payment\n";
             }
-            else if (Payment < 0)
+            else if (payment < 0)
             {
                 message += "Field Payment must be positive\n";
             }
 
-            employee.Payment = Payment;
+            employee.Payment = payment;
 
             if (radioFixedPayment.Checked)
             {

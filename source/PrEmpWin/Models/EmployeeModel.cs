@@ -1,39 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Xml.Serialization;
 using AutoMapper;
+using PrEmp.Domain.Employees;
 using PrEmpWin.DAL;
 using PrEmpWin.DAL.Repository;
-using PrEmpWin.Domain;
 using PrEmpWin.ViewModel;
 
 namespace PrEmpWin.Models
 {
     public class EmployeeModel
     {
-        private const string filePath = @"..\..\Employees.xml";
+        private const string FilePath = @"..\..\Employees.xml";
 
-        private GenericRepository<Employee> employeeRepository;
+        private readonly GenericRepository<Employee> _employeeRepository;
 
         public EmployeeModel()
         {
-            employeeRepository = new GenericRepository<Employee>();
+            _employeeRepository = new GenericRepository<Employee>();
         }
 
         public List<EmployeeBase> GetEmployeesFromBd()
         {
-            return employeeRepository.Get().Select(Mapper.Map<EmployeeBase>).ToList();
+            return _employeeRepository.Get().Select(Mapper.Map<EmployeeBase>).ToList();
         }
 
         public List<EmployeeBase> GetEmployeesFromFile()
         {
-            List<EmployeeBase> employees = null;
+            List<EmployeeBase> employees;
             XmlSerializer xmlserialazer = new XmlSerializer(typeof(List<EmployeeBase>));
 
-            using (StreamReader r = new StreamReader(filePath))
+            using (StreamReader r = new StreamReader(FilePath))
             {
                 employees = (List<EmployeeBase>)xmlserialazer.Deserialize(r);
             }
@@ -53,7 +52,6 @@ namespace PrEmpWin.Models
                 Thread thread = new Thread(() => AddEmployeeFile(employeeBase));
                 thread.Start();
             }
-
         }
 
         public void DeleteEmployee(int id, SourceType source)
@@ -75,7 +73,7 @@ namespace PrEmpWin.Models
 
         private void AddEmployeeBd(EmployeeBase employee)
         {
-            employeeRepository.Add(Mapper.Map<Employee>(employee));
+            _employeeRepository.Add(Mapper.Map<Employee>(employee));
         }
 
         private void AddEmployeeFile(EmployeeBase employee)
@@ -96,7 +94,7 @@ namespace PrEmpWin.Models
 
             XmlSerializer xmlserialazer = new XmlSerializer(typeof(List<EmployeeBase>));
 
-            using (TextWriter myStreamWriter = new StreamWriter(filePath))
+            using (TextWriter myStreamWriter = new StreamWriter(FilePath))
             {
                 xmlserialazer.Serialize(myStreamWriter, employees);
             }
@@ -104,7 +102,7 @@ namespace PrEmpWin.Models
 
         private void DeleteEmployeeBd(int id)
         {
-            employeeRepository.Delete(id);
+            _employeeRepository.Delete(id);
         }
 
         private void DeleteEmployeeFile(int id)
@@ -115,7 +113,7 @@ namespace PrEmpWin.Models
 
             XmlSerializer xmlserialazer = new XmlSerializer(typeof(List<EmployeeBase>));
 
-            using (TextWriter myStreamWriter = new StreamWriter(filePath))
+            using (TextWriter myStreamWriter = new StreamWriter(FilePath))
             {
                 xmlserialazer.Serialize(myStreamWriter, employees);
             }

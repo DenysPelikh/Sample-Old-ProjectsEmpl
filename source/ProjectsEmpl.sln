@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Empl", "PrEmpWeb\Empl\Empl.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "PrEmpWeb\UnitTest\UnitTest.csproj", "{6712261B-3B1D-4960-85E3-C6B0E45787F0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrEmpConsole", "PrEmpConsole\PrEmpConsole.csproj", "{484B64BA-70DC-4AF5-A731-8FF8BCF9F6F3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrEmp.Domain", "PrEmp.Domain\PrEmp.Domain.csproj", "{139BE8DA-AC3C-4E54-9C18-BF2B05C8AD2C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +33,14 @@ Global
 		{6712261B-3B1D-4960-85E3-C6B0E45787F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6712261B-3B1D-4960-85E3-C6B0E45787F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6712261B-3B1D-4960-85E3-C6B0E45787F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{484B64BA-70DC-4AF5-A731-8FF8BCF9F6F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{484B64BA-70DC-4AF5-A731-8FF8BCF9F6F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{484B64BA-70DC-4AF5-A731-8FF8BCF9F6F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{484B64BA-70DC-4AF5-A731-8FF8BCF9F6F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{139BE8DA-AC3C-4E54-9C18-BF2B05C8AD2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{139BE8DA-AC3C-4E54-9C18-BF2B05C8AD2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{139BE8DA-AC3C-4E54-9C18-BF2B05C8AD2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{139BE8DA-AC3C-4E54-9C18-BF2B05C8AD2C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

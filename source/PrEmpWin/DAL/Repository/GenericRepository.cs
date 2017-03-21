@@ -8,46 +8,46 @@ namespace PrEmpWin.DAL.Repository
 {
     class GenericRepository<TEntity> where TEntity : class
     {
-        private EmpDBEntities context;
-        private DbSet<TEntity> dbSet;
+        private readonly EmpDBEntities _context;
+        private readonly DbSet<TEntity> _dbSet;
 
         public GenericRepository()
         {
-            this.context = new EmpDBEntities();
-            dbSet = context.Set<TEntity>();
+            _context = new EmpDBEntities();
+            _dbSet = _context.Set<TEntity>();
         }
 
         public virtual IEnumerable<TEntity> Get()
         {
-            return dbSet.ToList();
+            return _dbSet.ToList();
         }
 
         public virtual IEnumerable<TEntity> GetMany(Func<TEntity, bool> where)
         {
-            return dbSet.Where(where).ToList();
+            return _dbSet.Where(where).ToList();
         }
 
         public virtual void Delete(object id)
         {
-            var entityToDelete = dbSet.Find(id);
+            var entityToDelete = _dbSet.Find(id);
             Delete(entityToDelete);
-            context.SaveChanges();
+            _context.SaveChanges();
         }
 
         public virtual void Delete(TEntity entityToDelete)
         {
-            if (context.Entry(entityToDelete).State == EntityState.Detached)
+            if (_context.Entry(entityToDelete).State == EntityState.Detached)
             {
-                dbSet.Attach(entityToDelete);
+                _dbSet.Attach(entityToDelete);
             }
 
-            dbSet.Remove(entityToDelete);
-            context.SaveChanges();
+            _dbSet.Remove(entityToDelete);
+            _context.SaveChanges();
         }
 
         public virtual TEntity GetById(object id)
         {
-            var entity = dbSet.Find(id);
+            var entity = _dbSet.Find(id);
 
             if (entity == null)
             {
@@ -59,7 +59,7 @@ namespace PrEmpWin.DAL.Repository
 
         public virtual TEntity GetById(Func<TEntity, bool> where)
         {
-            var entity = dbSet.Where(where).First();
+            var entity = _dbSet.Where(where).First();
 
             if (entity == null)
             {
@@ -71,15 +71,15 @@ namespace PrEmpWin.DAL.Repository
 
         public virtual void Add(TEntity entity)
         {
-            dbSet.Add(entity);
-            context.SaveChanges();
+            _dbSet.Add(entity);
+            _context.SaveChanges();
         }
 
         public virtual void Update(TEntity entityToUpdate)
         {
-            dbSet.Attach(entityToUpdate);
-            context.Entry(entityToUpdate).State = EntityState.Modified;
-            context.SaveChanges();
+            _dbSet.Attach(entityToUpdate);
+            _context.Entry(entityToUpdate).State = EntityState.Modified;
+            _context.SaveChanges();
         }
     }
 }

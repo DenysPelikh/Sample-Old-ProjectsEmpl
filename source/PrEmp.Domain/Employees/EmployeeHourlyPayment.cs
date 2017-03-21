@@ -1,4 +1,4 @@
-﻿namespace PrEmpWin.Domain
+﻿namespace PrEmp.Domain.Employees
 {
     public class EmployeeHourlyPayment : EmployeeBase
     {
@@ -15,6 +15,11 @@
         public override double GetAverageMonthlySalary()
         {
             return HourlyRate * (20.8 * 8);
+        }
+
+        public override string ToString()
+        {
+            return "Hourly payment";
         }
     }
 }
