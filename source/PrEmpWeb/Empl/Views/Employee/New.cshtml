@@ -1,0 +1,65 @@
+﻿@model Empl.ViewModels.EmployeeViewModel
+
+@{
+    ViewBag.Title = "New";
+}
+
+<h2 class="introduction">New employee</h2>
+
+@using (Html.BeginForm("New", "Employee", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
+        <div class="col-sm-5 col-md-4">
+            @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+        </div>
+        <div class="col-sm-5 col-md-4">
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Position, new { @class = "control-label col-md-2" })
+        <div class="col-sm-5 col-md-4">
+            @Html.TextBoxFor(model => model.Position, new { @class = "form-control" })
+        </div>
+        <div class="col-sm-5 col-md-4">
+            @Html.ValidationMessageFor(model => model.Position)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Status, new { @class = "control-label col-md-2" })
+        <div class="col-sm-5 col-md-1">
+            @Html.CheckBoxFor(model => model.Status, new { @class = "form-control" })
+        </div>
+        <div class="col-sm-5 col-md-4">
+            @Html.ValidationMessageFor(model => model.Status)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Salary, new { @class = "control-label col-md-2" })
+        <div class="col-sm-5 col-md-4">
+            @Html.TextBoxFor(model => model.Salary, new { @class = "form-control" })
+        </div>
+        <div class="col-sm-5 col-md-4">
+            @Html.ValidationMessageFor(model => model.Salary)
+        </div>
+    </div>
+
+    <p>
+        <input type="submit" class="btn btn-primary" id="button-new" value="Create" />
+    </p>
+}
+
+<div>
+    @Html.ActionLink("Back to list", "Index", null, new { @class = "btn btn-primary", @id="button-new"})
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

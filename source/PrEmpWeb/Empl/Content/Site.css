@@ -1,0 +1,117 @@
+﻿body {
+    font-size: .85em;
+    font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
+    color: #232323;
+    background-color: #fff;
+}
+
+header, footer, nav, section {
+    display: block;
+}
+
+
+/* Styles for basic forms
+-----------------------------------------------------------*/
+fieldset {
+    border: 1px solid #ddd;
+    padding: 0 1.4em 1.4em 1.4em;
+    margin: 0 0 1.5em 0;
+}
+
+legend {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+textarea {
+    min-height: 75px;
+}
+
+.editor-label {
+    margin: 1em 0 0 0;
+}
+
+.editor-field {
+    margin: 0.5em 0 0 0;
+}
+
+
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+.field-validation-error {
+    color: #f00;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+.input-validation-error {
+    border: 1px solid #f00;
+    background-color: #fee;
+}
+
+.validation-summary-errors {
+    font-weight: bold;
+    color: #f00;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+/*-----------------------------------------------------------*/
+.body-ts {
+    background-image: url(images/background.gif);
+    background-color: #d2b48c;
+}
+
+.content {
+    margin: 0 auto;
+    width: 1200px;
+    min-height: 700px;
+    background: #EFEFEF;
+    border-radius: 5px;
+}
+
+#content-table-employee {
+    background-color: #FEFFD3;
+    margin: 0 auto;
+    width: 90%;
+}
+
+.introduction {
+    margin-left: 200px;
+    margin-top: 0px;
+    padding-top: 10px;
+}
+
+#button-create {
+    margin: 10px 10px 10px 110px;
+}
+
+#button-new {
+    margin-left: 240px;
+}
+
+.filter {
+    margin: 20px 20px 20px 75px;
+}
+
+.pagination-position {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.details-button {
+    margin-left: 100px;
+}
+
+.details-button-position {
+    float: left;
+    margin-left: 10px;
+}
+
+.content-details {
+    font-size: 20px;
+}

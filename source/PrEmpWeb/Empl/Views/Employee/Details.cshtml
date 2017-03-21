@@ -1,0 +1,38 @@
+﻿@model Empl.ViewModels.EmployeeViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2 class="introduction">Detailed information about the employee @Model.Name</h2>
+
+<div class="well content-details">
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Position): @Html.DisplayFor(model => model.Position)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Status): @Html.DisplayFor(model => model.Status)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Salary): @Html.DisplayFor(model => model.Salary)
+    </div>
+
+</div>
+
+<div class="details-button">
+    @Html.ActionLink("Back to List", "Index", "Employee", null, new { @class = "btn btn-info details-button-position"})
+    @Html.ActionLink("Edit", "Update", "Employee", new { id = Model.EmployeeId }, new { @class = "btn btn-warning details-button-position"})
+    <div class="details-button-position">
+        @using (Html.BeginForm("Delete", "Employee", new { id = Model.EmployeeId }, FormMethod.Post, new { onclick = "return confirm('You really delete the user " + @Model.Name + "?')" }))
+        {
+            <input type="submit" class="btn btn-danger" value="Delete" />
+        }
+    </div>
+</div>

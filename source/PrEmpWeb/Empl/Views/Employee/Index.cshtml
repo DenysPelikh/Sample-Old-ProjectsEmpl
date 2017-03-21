@@ -1,0 +1,76 @@
+﻿@using Empl.Helpers
+@model Empl.ViewModels.IndexViewModel
+
+@{
+    ViewBag.Title = "Employees";
+}
+
+<h2 class="introduction">Employees</h2>
+
+<div class="filter">
+    @using (Html.BeginForm("Index", "Employee", FormMethod.Get, new {@class = "line_block"}))
+    {
+        @Html.DropDownList("filter", new SelectList(new[] {"All", "Active", "Not active"}
+            .Select(x => new {value = x, text = x}),
+            "value", "text", Model.Filter))
+
+        <input class="btn btn-success" id="submit-filter" value="Filter" type="submit"/>
+    }
+</div>
+
+<table id="content-table-employee" class="table table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Employees.First().EmployeeId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Employees.First().Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Employees.First().Position)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Employees.First().Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Employees.First().Salary)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Employees)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmployeeId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Position)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Salary)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Update", "Employee", new { id = item.EmployeeId }, new { @class = "btn btn-danger" })
+                @Html.ActionLink("Details", "Details", "Employee", new { id = item.EmployeeId }, new { @class = "btn btn-info" })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<div class="pagination-position">
+    <div class="btn-group">
+        @Html.GenerateGoToPageLink(Model, x => Url.Action("Index", new { page = x, filter = Model.Filter }))
+    </div>
+</div>
+
+@Html.ActionLink("Create new", "New", null, new { @class = "btn btn-primary", id = "button-create" })
+
+@Html.ActionLink("Generate report", "Generate", null, new { @class = "btn btn-danger" })

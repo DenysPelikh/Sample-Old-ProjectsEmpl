@@ -1,0 +1,21 @@
+Report on employees
+
+Name     Salary                  Tax             Salary minus taxes
+Melvin      12000                 1800                          10200
+Richard      30000                 7500                          22500
+Charles      20000                 3000                          17000
+Cassandra      14000                 2100                          11900
+Collin      24000                 3600                          20400
+Miles      10000                 1500                           8500
+Trevor      10000                 1500                           8500
+Cassandra      20000                 3000                          17000
+Thomas      12000                 1800                          10200
+Cameron      19000                 2850                          16150
+Elizabeth      14000                 2100                          11900
+Eustacia      24000                 3600                          20400
+Milton      24000                 3600                          20400
+Alvin      20000                 3000                          17000
+Thomas      14000                 2100                          11900
+qwdq      10000                 1500                           8500
+
+Total:     277000                44550                         232450
