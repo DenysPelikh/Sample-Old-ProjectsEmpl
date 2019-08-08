@@ -1,6 +1,6 @@
 # Sample-Old-ProjectsEmpl
 Old Samples Projects Empl
-### Status: Sample
+### Type: Sample
 
 ## Description
 These are updated and merged into one repository **samples** from old repositories which demonstrate a simple multilevel development by example **model** of employee.
